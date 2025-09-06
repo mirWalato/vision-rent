@@ -1,6 +1,8 @@
 package com.visionrent.service;
 
 import com.visionrent.domain.ContactMessage;
+import com.visionrent.exception.ResourceNotFoundException;
+import com.visionrent.exception.message.ErrorMessage;
 import com.visionrent.repository.ContactMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,5 +33,11 @@ public class ContactMessageService {
 
     public Page<ContactMessage> getAll(Pageable pageable) {
         return contactMessageRepository.findAll(pageable);
+    }
+
+    public ContactMessage getContactMessage(Long id) {
+//        return contactMessageRepository.findById(id).orElseThrow( ()-> new ResourceNotFoundException("ContactMessage is not found with id: "));
+          return contactMessageRepository.findById(id).orElseThrow( ()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, id)));
+
     }
 }

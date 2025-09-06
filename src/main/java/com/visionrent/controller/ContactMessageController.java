@@ -71,6 +71,26 @@ public class ContactMessageController {
 
     }
 
+    // spesifik bir ContactMessage getirelim
+    @GetMapping("/{id}")
+    public ResponseEntity<ContactMessageDTO> getMessageWithPath(@PathVariable("id") Long id) {
+        ContactMessage contactMessage = contactMessageService.getContactMessage(id);
+        ContactMessageDTO contactMessageDTO = contactMessageMapper.contactMessageToDTO(contactMessage);
+        return ResponseEntity.ok(contactMessageDTO);
+
+    }
+
+    // getById with RequestParam
+    @GetMapping("/request")
+    public ResponseEntity<ContactMessageDTO> getMessageWithRequestParam(@RequestParam("id") Long id) {
+        ContactMessage contactMessage = contactMessageService.getContactMessage(id);
+        ContactMessageDTO contactMessageDTO = contactMessageMapper.contactMessageToDTO(contactMessage);
+        return ResponseEntity.ok(contactMessageDTO);
+
+    }
+
+
+
     // getPageDTO metodu
     private Page<ContactMessageDTO> getPageDTO(Page<ContactMessage> contactMessagePage) {
         // page sınıfına ait map metodunu kullanacağız
