@@ -6,4 +6,6 @@ public class ErrorMessage {
     public final static String ROLE_NOT_FOUND_MESSAGE = "Role: %s not found";
     public final static String USER_NOT_FOUND_MESSAGE = "User: with email %s not found";
 
+    public final static String JWTTOKEN_ERROR_MESSAGE = "JWT Token Validation Error %s";
+
 }
