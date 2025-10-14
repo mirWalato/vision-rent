@@ -45,7 +45,7 @@ management: #actuator
 
 visionrent:
   app:
-    jwtSecret: visionRent@!23
+    jwtSecret: visionRent@!23visionRent@!23visionRent@!23
     jwtExpirationMs: 86400000
 
 info:

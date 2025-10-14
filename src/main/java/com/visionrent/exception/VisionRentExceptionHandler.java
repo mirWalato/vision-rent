@@ -69,13 +69,19 @@ public class VisionRentExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(error);
     }
 
+    @ExceptionHandler(ConflictException.class)
+    protected ResponseEntity<Object> handleConflictException(ConflictException ex, WebRequest request) {
+        ApiResponseError error = new ApiResponseError(HttpStatus.CONFLICT, ex.getMessage(), request.getDescription(false));
+
+        return buildResponseEntity(error);
+    }
+
     @ExceptionHandler(RuntimeException.class)
     protected ResponseEntity<Object> handleRuntimeException(RuntimeException ex, WebRequest request) {
 
         ApiResponseError error = new ApiResponseError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), request.getDescription(false));
 
         return buildResponseEntity(error);
-
     }
 
     @ExceptionHandler(Exception.class)
@@ -84,7 +90,6 @@ public class VisionRentExceptionHandler extends ResponseEntityExceptionHandler {
         ApiResponseError error = new ApiResponseError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), request.getDescription(false));
 
         return buildResponseEntity(error);
-
     }
 
 }
